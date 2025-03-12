@@ -1,12 +1,13 @@
 - name: install nginx
   hosts: web
   tasks:
-  - name: install nginx
+  - name: install nginx if RHEL
     ansible.builtin.debian:
       name: nginx
       state: present
     when: ansible_facts['os_family'] == 'RedHat'
-  - name: install nginx
+    
+  - name: install nginx if ubuntu
     ansible.builtin.apt:
       name: nginx
       state: present
